@@ -1,6 +1,7 @@
 import React, { createContext } from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
+import App from './App'
 
 export const TreesContext = createContext()
 
@@ -10,14 +11,6 @@ const trees = [
   { id: 3, type: 'c' },
   { id: 4, type: 'd' },
 ]
-
-const App = () => {
-  return (
-    <>
-      <h1>Trees</h1>
-    </>
-  )
-}
 
 ReactDOM.render(
   <TreesContext.Provider value={{ trees }}>
