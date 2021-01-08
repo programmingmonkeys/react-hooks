@@ -2,13 +2,35 @@ import React, { useReducer } from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 
+const initialState = {
+  message: 'hi',
+}
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'ACTION_YELL':
+      return {
+        message: `Hey I just said ${state.message}`,
+      }
+    case 'ACTION_WHISPER':
+      return {
+        message: `bah blag booo: ${state.message}`,
+      }
+    default:
+      return {
+        message: '',
+      }
+  }
+}
+
 const App = () => {
-  const [checked, toggle] = useReducer(checked => !checked, false)
+  const [state, dispatch] = useReducer(reducer, initialState)
 
   return (
     <>
-      <input type="checkbox" value={checked} onChange={toggle} />
-      <p>{checked ? 'checked' : 'not checked'}</p>
+      <p>Message: {state.message}</p>
+      <button onClick={() => dispatch({ type: 'ACTION_YELL' })}>yell</button>
+      <button onClick={() => dispatch({ type: 'ACTION_WHISPER' })}>whisper</button>
     </>
   )
 }
