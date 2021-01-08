@@ -1,27 +1,30 @@
-import React, { useRef } from 'react'
+import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 
 const App = () => {
-  const sound = useRef()
-  const color = useRef()
+  const [sound, setSound] = useState('')
+  const [color, setColor] = useState('#000000')
 
   const submit = e => {
     e.preventDefault()
-    const soundValue = sound.current.value
-    const colorValue = color.current.value
 
-    alert(`${soundValue}: sound value | ${colorValue}: color value`)
+    alert(`${sound}: sound value | ${color}: color value`)
 
-    sound.current.value = ''
-    color.current.value = ''
+    setSound('')
+    setColor('#000000')
   }
 
   return (
     <>
       <form onSubmit={submit}>
-        <input ref={sound} type="text" placeholder="Sound...." />
-        <input ref={color} type="color" />
+        <input
+          value={sound}
+          type="text"
+          placeholder="Sound...."
+          onChange={e => setSound(e.target.value)}
+        />
+        <input value={color} type="color" onChange={e => setColor(e.target.value)} />
         <button>ADD</button>
       </form>
     </>
